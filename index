@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-CAP - Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="top-links" id="topLinks">
+        <a href="#">College</a> | <a href="#" id="loginLink">Login</a>
+    </div>
+
+    <div class="header">
+        <img src="https://www.griet.in/gcap/images/gcaplogo.jpg" alt="G-CAP Logo">
+    </div>
+
+    <!-- ==================== PAGE 1: LOGIN ==================== -->
+    <div id="page-login" class="page active">
+        <div class="divider-beige"></div>
+        <div class="divider-maroon"></div>
+
+        <div class="main-content">
+            <div class="login-box">
+                <table>
+                    <tr>
+                        <td><label>Login:</label></td>
+                        <td><input type="text" id="loginId" placeholder=""></td>
+                    </tr>
+                    <tr>
+                        <td><label>Password:</label></td>
+                        <td><input type="password" id="loginPassword" placeholder=""></td>
+                    </tr>
+                </table>
+                <div id="loginError" class="error-msg"></div>
+                <div class="login-btn-row">
+                    <button class="login-btn" onclick="doLogin()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 2: RESULT FORM ==================== -->
+    <div id="page-form" class="page">
+        <div class="welcome-bar">
+            <span>Welcome, <strong id="welcomeUser"></strong></span>
+            <a href="#" onclick="doLogout()">Logout</a>
+        </div>
+
+        <div class="main-content">
+            <div class="result-form">
+                <div class="form-group">
+                    <label>Hallticket number <span class="required">*</span></label>
+                    <input type="text" id="hallticket" placeholder="25241a****" maxlength="10">
+                </div>
+
+                <div class="form-group">
+                    <label>Select Exam Type <span class="required">*</span></label>
+                    <select id="examType">
+                        <option value="">-- Select --</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Supplementary">Supplementary</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>View Type</label>
+                    <select id="viewType">
+                        <option value="Single Semester" selected>Single Semester</option>
+                        <option value="All Semesters">All Semesters</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Branch <span class="required">*</span></label>
+                    <select id="branch">
+                        <option value="">-- Select --</option>
+                        <option value="CSE">CSE - Computer Science and Engineering</option>
+                        <option value="ECE">ECE - Electronics and Communication Engineering</option>
+                        <option value="EEE">EEE - Electrical and Electronics Engineering</option>
+                        <option value="MECH">MECH - Mechanical Engineering</option>
+                        <option value="CIVIL">CIVIL - Civil Engineering</option>
+                        <option value="IT">IT - Information Technology</option>
+                        <option value="CSM">CSM - Computer Science & Machine Learning</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Semester <span class="required">*</span></label>
+                    <select id="semester">
+                        <option value="">-- Select --</option>
+                        <option value="1-1">1-1</option>
+                        <option value="1-2">1-2</option>
+                        <option value="2-1">2-1</option>
+                        <option value="2-2">2-2</option>
+                        <option value="3-1">3-1</option>
+                        <option value="3-2">3-2</option>
+                        <option value="4-1">4-1</option>
+                        <option value="4-2">4-2</option>
+                    </select>
+                </div>
+
+                <button class="get-result-btn" onclick="getResult()">Get Result</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 3: RESULT DISPLAY ==================== -->
+    <div id="page-results" class="page">
+        <div class="welcome-bar">
+            <span>Welcome, <strong id="welcomeUser2"></strong></span>
+            <a href="#" onclick="doLogout()">Logout</a>
+        </div>
+
+        <div class="main-content">
+            <div class="results-display">
+                <h2>Examination Results</h2>
+                <div class="student-info" id="studentInfo"></div>
+
+                <div class="results-summary">
+                    <div class="summary-item">
+                        <div class="label">SGPA</div>
+                        <div class="value" id="sgpaValue">--</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="label">Total Credits</div>
+                        <div class="value" id="creditsValue">--</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="label">Result</div>
+                        <div class="value" id="resultStatus">--</div>
+                    </div>
+                </div>
+
+                <button class="toggle-btn" onclick="toggleSubjects()">📋 View Subject Marks</button>
+
+                <div class="subjects-section" id="subjectsSection">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Subject Code</th>
+                                <th>Subject Name</th>
+                                <th>Credits</th>
+                                <th>Grade</th>
+                                <th>Grade Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                        </tbody>
+                    </table>
+
+                    <div class="joke-banner">
+                        <h1>it is a joke 😁😁</h1>
+                        <p>i will pray for you to pass the exam 🙌</p>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="back-btn" onclick="goBackToForm()">← Back to Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bar"></div>
+    <div class="footer">
+        Copyright &copy; 2026 - All Rights Reserved - GRIET
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
