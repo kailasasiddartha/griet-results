@@ -54,7 +54,7 @@
             <div class="result-form">
                 <div class="form-group">
                     <label>Hallticket number <span class="required">*</span></label>
-                    <input type="text" id="hallticket" placeholder="25241a****" maxlength="10">
+                    <input type="text" id="hallticket" placeholder="25241A****" maxlength="10">
                 </div>
 
                 <div class="form-group">
@@ -70,14 +70,12 @@
                     <label>Branch <span class="required">*</span></label>
                     <select id="branch">
                         <option value="">-- Select --</option>
-                        <option value="CSE">CSE - Computer Science and Engineering</option>
                         <option value="ECE">ECE - Electronics and Communication Engineering</option>
                         <option value="EEE">EEE - Electrical and Electronics Engineering</option>
                         <option value="MECH">MECH - Mechanical Engineering</option>
                         <option value="CIVIL">CIVIL - Civil Engineering</option>
                         <option value="IT">IT - Information Technology</option>
-                        <option value="CSM">CSM - Computer Science &amp; Machine Learning</option>
-                        <option value="CSBS">CSBS - Computer Science and Business Systems</option>
+                        <option value="CSD">CSD - Computer Science and Design</option>
                     </select>
                 </div>
 
@@ -86,13 +84,6 @@
                     <select id="semester">
                         <option value="">-- Select --</option>
                         <option value="1-1">1-1</option>
-                        <option value="1-2">1-2</option>
-                        <option value="2-1">2-1</option>
-                        <option value="2-2">2-2</option>
-                        <option value="3-1">3-1</option>
-                        <option value="3-2">3-2</option>
-                        <option value="4-1">4-1</option>
-                        <option value="4-2">4-2</option>
                     </select>
                 </div>
 
@@ -144,7 +135,7 @@
                                 <td class="profile-sep">:</td>
                                 <td class="profile-value" id="profileRollNo"></td>
                             </tr>
-                            <tr>
+                            <tr id="sectionRow">
                                 <td class="profile-label">Section</td>
                                 <td class="profile-sep">:</td>
                                 <td class="profile-value" id="profileSection"></td>
@@ -167,13 +158,11 @@
                     </div>
                 </div>
 
-
-
-
                 <!-- Current Details Section -->
                 <div class="academic-section">
                     <h3 class="academic-title"
-                        style="text-align: center; border: none; text-decoration: underline; font-size: 16px;">Current
+                        style="text-align: center; border: none; text-decoration: underline; font-size: 16px;">
+                        Current
                         Details</h3>
                     <table class="academic-table" style="text-align: center; border: 1px solid #ccc; font-size: 13px;">
                         <thead style="background-color: #f9f9f9; border-bottom: 1px solid #ccc;">
@@ -247,7 +236,8 @@
                     <div id="semesterDetailArea" style="display:none;">
                         <div class="profile-results-header" style="margin-top:20px;">
                             <h3 id="profileResultsTitle">Semester 1-1 - Subject Details</h3>
-                            <button class="close-results-btn" onclick="closeSemesterDetail()">✕ Close Details</button>
+                            <button class="close-results-btn" onclick="closeSemesterDetail()">✕ Close
+                                Details</button>
                         </div>
 
                         <table class="results-table">
@@ -275,63 +265,6 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 3: RESULT DISPLAY (for non-CSE/CSM) ==================== -->
-    <div id="page-results" class="page">
-        <div class="welcome-bar">
-            <span>Welcome, <strong id="welcomeUser2"></strong></span>
-            <a href="#" onclick="doLogout()">Logout</a>
-        </div>
-
-        <div class="main-content">
-            <div class="results-display">
-                <h2>Examination Results</h2>
-                <div class="student-info" id="studentInfo"></div>
-
-                <div class="results-summary">
-                    <div class="summary-item">
-                        <div class="label">SGPA</div>
-                        <div class="value" id="sgpaValue">--</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="label">Total Credits</div>
-                        <div class="value" id="creditsValue">--</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="label">Result</div>
-                        <div class="value" id="resultStatus">--</div>
-                    </div>
-                </div>
-
-                <button class="toggle-btn" onclick="toggleSubjects()">📋 View Subject Marks</button>
-
-                <div class="subjects-section" id="subjectsSection">
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Subject Code</th>
-                                <th>Subject Name</th>
-                                <th>Credits</th>
-                                <th>Grade</th>
-                                <th>Grade Points</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultsBody">
-                        </tbody>
-                    </table>
-
-                    <div class="joke-banner">
-                        <h1>it is a joke</h1>
-
-                    </div>
-                </div>
-
-                <div class="btn-row">
-                    <button class="back-btn" onclick="goBackToForm()">← Back to Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="footer-bar"></div>
     <div class="footer">

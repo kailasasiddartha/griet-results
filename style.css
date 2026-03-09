@@ -193,26 +193,6 @@
             background: #3e1522;
         }
 
-        /* ============ PAGE 3: RESULTS DISPLAY ============ */
-        .results-display {
-            width: 100%;
-            max-width: 700px;
-            padding: 10px;
-        }
-
-        .results-display h2 {
-            text-align: center;
-            color: #2a2f7e;
-            margin-bottom: 5px;
-            font-size: 22px;
-        }
-
-        .results-display .student-info {
-            text-align: center;
-            color: #555;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
 
         .results-table {
             width: 100%;
@@ -245,100 +225,11 @@
             background: #f0eaea;
         }
 
-        .results-summary {
-            display: flex;
-            justify-content: space-around;
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .summary-item {
-            text-align: center;
-        }
-
-        .summary-item .label {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 5px;
-        }
-
-        .summary-item .value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2a2f7e;
-        }
-
-        .summary-item .value.pass {
-            color: #2e7d32;
-        }
-
-        .summary-item .value.fail {
-            color: #c62828;
-        }
-
         .grade-pass {
             color: #2e7d32;
             font-weight: bold;
         }
 
-        .grade-fail {
-            color: #c62828;
-            font-weight: bold;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 10px 30px;
-            font-size: 15px;
-            color: #fff;
-            background: #5c2233;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .back-btn:hover {
-            background: #3e1522;
-        }
-
-        .btn-row {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* View subjects toggle */
-        .toggle-btn {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            background: #2a2f7e;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-
-        .toggle-btn:hover {
-            background: #1e2366;
-        }
-
-        .subjects-section {
-            display: none;
-        }
-
-        .subjects-section.show {
-            display: block;
-        }
 
         /* Joke banner */
         .joke-banner {
@@ -348,7 +239,7 @@
         }
 
         .joke-banner h1 {
-            font-size: 12px;
+            font-size: 10px;
             color: #5c2233;
             margin: 0;
             font-weight: normal;
@@ -517,15 +408,6 @@
             object-fit: cover;
         }
 
-        /* Watermark */
-        .profile-watermark {
-            text-align: center;
-            color: #ccc;
-            font-size: 13px;
-            letter-spacing: 2px;
-            padding: 10px 0;
-            font-weight: bold;
-        }
 
         /* Academic Details */
         .academic-section {
@@ -540,34 +422,6 @@
             margin-bottom: 15px;
         }
 
-        .semester-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .semester-btn {
-            padding: 12px 8px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #5c2233;
-            background: #f9f5f5;
-            border: 2px solid #5c2233;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
-        }
-
-        .semester-btn:hover {
-            background: #5c2233;
-            color: #fff;
-        }
-
-        .semester-btn.active {
-            background: #5c2233;
-            color: #fff;
-        }
 
         /* Profile Results Area */
         .profile-results-area {
@@ -675,22 +529,6 @@
             border: 1px solid #ddd;
         }
 
-        .academic-link-cell {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .academic-link {
-            color: #2a2f7e;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .academic-link:hover {
-            text-decoration: underline;
-            color: #5c2233;
-        }
 
         /* Semester Summary Table */
         .semester-summary-table td {
