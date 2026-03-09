@@ -26,7 +26,6 @@ function showPage(pageId) {
 // ===== SECTION CLASSIFICATION DATA =====
 const sectionRanges = {
     'CSE': {
-        branchCode: '05',
         sections: [
             { section: 'A', from: '01', to: '65' },
             { section: 'B', from: '66', to: 'AW' },
@@ -41,7 +40,6 @@ const sectionRanges = {
         ]
     },
     'CSM': {
-        branchCode: '66',
         sections: [
             { section: 'A', from: '01', to: '65' },
             { section: 'B', from: '66', to: 'AW' },
@@ -51,7 +49,6 @@ const sectionRanges = {
         ]
     },
     'CSBS': {
-        branchCode: '32',
         sections: [
             { section: 'A', from: '01', to: '61' }
         ]
@@ -117,12 +114,12 @@ function getSection(rollNumber) {
 
 // ===== LOGIN =====
 function doLogin() {
-    const loginId = document.getElementById('loginId').value.trim();
+    const loginId = document.getElementById('loginId').value.trim().toUpperCase();
     const loginPassword = document.getElementById('loginPassword').value.trim();
     const errorDiv = document.getElementById('loginError');
 
-    // Validate login ID: must start with 25241A followed by at least 4 uppercase alphanumeric chars
-    const idRegex = /^25241A[A-Z0-9]{4,}$/;
+    // Validate login ID: must start with 25241A followed by at least 4 alphanumeric chars (case-insensitive)
+    const idRegex = /^25241A[A-Z0-9]{4,}$/i;
 
     if (!loginId || !idRegex.test(loginId) || !loginPassword) {
         errorDiv.textContent = 'Invalid Credentials';
@@ -159,11 +156,11 @@ function doLogout() {
 
 // ===== GET RESULT =====
 function getResult() {
-    const hallticket = document.getElementById('hallticket').value.trim();
+    const hallticket = document.getElementById('hallticket').value.trim().toUpperCase();
     const examType = document.getElementById('examType').value;
     const semester = document.getElementById('semester').value;
 
-    const htRegex = /^25241A[A-Z0-9]{4}$/;
+    const htRegex = /^25241A[A-Z0-9]{4}$/i;
     if (!hallticket || !htRegex.test(hallticket)) {
         alert('Please enter a valid Hallticket number.');
         return;
@@ -196,95 +193,94 @@ function getResult() {
 const branchSubjects = {
     'CSE': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'CS103', name: 'Programming for Problem Solving (C)', credits: 3, grade: 'B', points: 6 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B+', points: 7 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'CS106', name: 'C Programming Lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1026', name: 'english lab', credits: 1, grade: 'B+', points: 7 },
-            { code: 'MA101', name: 'Semi Conductors and Devices', credits: 4, grade: 'A', points: 6 }
-
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'CS103', name: 'Programming for Problem Solving (C)', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'CS106', name: 'C Programming Lab', credits: 2 },
+            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1 },
+            { code: 'PH102', name: 'Applied Physics lab', credits: 2 },
+            { code: 'GR17A1026', name: 'english lab', credits: 1 },
+            { code: 'MA101', name: 'Semi Conductors and Devices', credits: 4 }
         ]
     },
     'ECE': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'EC103', name: 'Basic Electronics', credits: 3, grade: 'B+', points: 7 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B', points: 6 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'EC106', name: 'Electronics Lab', credits: 2, grade: 'B+', points: 7 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'EC103', name: 'Basic Electronics', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'EC106', name: 'Electronics Lab', credits: 2 }
         ]
     },
     'EEE': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B', points: 6 },
-            { code: 'EE103', name: 'Circuit Theory', credits: 3, grade: 'B+', points: 7 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B+', points: 7 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'EE106', name: 'Electrical Workshop', credits: 2, grade: 'B+', points: 7 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'EE103', name: 'Circuit Theory', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'EE106', name: 'Electrical Workshop', credits: 2 }
         ]
     },
     'MECH': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'ME103', name: 'Engineering Mechanics', credits: 3, grade: 'B+', points: 7 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B+', points: 7 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B', points: 6 },
-            { code: 'ME106', name: 'Workshop Practice', credits: 2, grade: 'B+', points: 7 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'ME103', name: 'Engineering Mechanics', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'ME106', name: 'Workshop Practice', credits: 2 }
         ]
     },
     'CIVIL': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'CE103', name: 'Engineering Mechanics', credits: 3, grade: 'B+', points: 7 },
-            { code: 'CE104', name: 'Engineering Drawing', credits: 3, grade: 'B+', points: 7 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'CE106', name: 'Surveying Lab', credits: 2, grade: 'B+', points: 7 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'CE103', name: 'Engineering Mechanics', credits: 3 },
+            { code: 'CE104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'CE106', name: 'Surveying Lab', credits: 2 }
         ]
     },
     'IT': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'IT103', name: 'Introduction to Programming', credits: 3, grade: 'B+', points: 7 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B', points: 6 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'IT106', name: 'Programming Lab', credits: 2, grade: 'B+', points: 7 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'IT103', name: 'Introduction to Programming', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'IT106', name: 'Programming Lab', credits: 2 }
         ]
     },
     'CSM': {
         '1-1': [
-            { code: 'GR17A1001', name: 'Linear Algebra and Single Variable Calculus', credits: 3, grade: 'B+', points: 7 },
-            { code: 'GR17A1002', name: 'Fundamentals of Electrical Engineering lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1008', name: 'Engineering Chemistry', credits: 3, grade: 'B+', points: 7 },
-            { code: 'GR17A1018', name: 'Fundamentals of Electrical Engineering', credits: 3, grade: 'B', points: 6 },
-            { code: 'GR17A1009', name: 'Computer Programming', credits: 3, grade: 'B+', points: 7 },
-            { code: 'GR17A1025', name: 'Engineering Workshop', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1030', name: 'Engineering Chemistry Lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1027', name: 'Computer Programming Lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1, grade: 'B+', points: 7 },
-            { code: 'GR17A1028', name: 'inovation and design thinking', credits: 1, grade: 'B+', points: 7 }
+            { code: 'GR17A1001', name: 'Linear Algebra and Single Variable Calculus', credits: 3 },
+            { code: 'GR17A1002', name: 'Fundamentals of Electrical Engineering lab', credits: 2 },
+            { code: 'GR17A1008', name: 'Engineering Chemistry', credits: 3 },
+            { code: 'GR17A1018', name: 'Fundamentals of Electrical Engineering', credits: 3 },
+            { code: 'GR17A1009', name: 'Computer Programming', credits: 3 },
+            { code: 'GR17A1025', name: 'Engineering Workshop', credits: 2 },
+            { code: 'GR17A1030', name: 'Engineering Chemistry Lab', credits: 2 },
+            { code: 'GR17A1027', name: 'Computer Programming Lab', credits: 2 },
+            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1 },
+            { code: 'GR17A1028', name: 'inovation and design thinking', credits: 1 }
         ]
     },
     'CSBS': {
         '1-1': [
-            { code: 'MA101', name: 'Mathematics - I', credits: 4, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics', credits: 4, grade: 'B+', points: 7 },
-            { code: 'CS103', name: 'Programming for Problem Solving (C)', credits: 3, grade: 'B', points: 6 },
-            { code: 'ME104', name: 'Engineering Drawing', credits: 3, grade: 'B+', points: 7 },
-            { code: 'EN105', name: 'English', credits: 2, grade: 'B+', points: 7 },
-            { code: 'CS106', name: 'C Programming Lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1, grade: 'B+', points: 7 },
-            { code: 'PH102', name: 'Applied Physics lab', credits: 2, grade: 'B+', points: 7 },
-            { code: 'GR17A1026', name: 'english lab', credits: 1, grade: 'B+', points: 7 },
-            { code: 'MA101', name: 'Semi Conductors and Devices', credits: 4, grade: 'A', points: 6 }
+            { code: 'MA101', name: 'Mathematics - I', credits: 4 },
+            { code: 'PH102', name: 'Applied Physics', credits: 4 },
+            { code: 'CS103', name: 'Programming for Problem Solving (C)', credits: 3 },
+            { code: 'ME104', name: 'Engineering Drawing', credits: 3 },
+            { code: 'EN105', name: 'English', credits: 2 },
+            { code: 'CS106', name: 'C Programming Lab', credits: 2 },
+            { code: 'GR17A1026', name: 'Basics of Computer Science and Engineering', credits: 1 },
+            { code: 'PH102', name: 'Applied Physics lab', credits: 2 },
+            { code: 'GR17A1026', name: 'english lab', credits: 1 },
+            { code: 'MA101', name: 'Semi Conductors and Devices', credits: 4 }
         ]
     }
 };
@@ -359,37 +355,26 @@ function showProfilePage(rollNumber, branch) {
     document.getElementById('profileResultsArea').style.display = 'none';
     document.getElementById('semesterDetailArea').style.display = 'none';
 
-    // Calculate overall CGPA and Credits
-    let totalCredits = 0;
-    let totalWeighted = 0;
+    // Calculate CGPA and Credits from first semester (1-1) only for the student's branch
+    const sem1Result = computeSemesterSgpa(rollNumber, branch, '1-1');
     let sem1Credits = 0;
+    let cgpa = 0;
 
-    // Check all semesters available in branchSubjects for this branch
-    const bData = branchSubjects[branch] || {};
-    for (const sem in bData) {
-        const result = computeSemesterSgpa(rollNumber, branch, sem);
-        if (result && result.totalCredits > 0) {
-            totalCredits += result.totalCredits;
-            totalWeighted += (result.sgpa * result.totalCredits);
-
-            // Only save the 1-1 semester credits for the display table
-            if (sem === '1-1') {
-                sem1Credits = result.totalCredits;
+    if (sem1Result && sem1Result.totalCredits > 0) {
+        // Count only credits for subjects where the student passed (grade points >= 6)
+        for (let i = 0; i < sem1Result.subjects.length; i++) {
+            if (sem1Result.assignedPoints[i] >= 6) {
+                sem1Credits += sem1Result.subjects[i].credits;
             }
         }
+        cgpa = sem1Result.sgpa;
     }
 
-    let cgpa = 0;
-    if (totalCredits > 0) {
-        cgpa = (totalWeighted / totalCredits).toFixed(2);
-    }
-
-    // Base backlogs on a deterministic random check so they stay visually consistent
-    let hasBacklogs = seededRandom(hashString(rollNumber + "backlogs")) > 0.85; // 15% chance of backlogs
-    let backlogsCount = hasBacklogs ? Math.floor(seededRandom(hashString(rollNumber + "count")) * 3) + 1 : 0;
+    // Backlogs are always zero
+    const backlogsCount = 0;
 
     // Update the Current Details UI
-    document.getElementById('currentCredits').textContent = sem1Credits || 0;
+    document.getElementById('currentCredits').textContent = sem1Credits;
     document.getElementById('currentBacklogs').textContent = backlogsCount;
     document.getElementById('currentCgpa').textContent = cgpa;
 
