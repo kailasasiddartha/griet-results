@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 2: RESULT FORM ==================== -->
+    <!-- ==================== PAGE 2: RESULT FORM (for non-CSE/CSM) ==================== -->
     <div id="page-form" class="page">
         <div class="welcome-bar">
             <span>Welcome, <strong id="welcomeUser"></strong></span>
@@ -66,15 +66,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label>View Type</label>
-                    <select id="viewType">
-                        <option value="Single Semester" selected>Single Semester</option>
-                        <option value="All Semesters">All Semesters</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group" id="branchGroup">
                     <label>Branch <span class="required">*</span></label>
                     <select id="branch">
                         <option value="">-- Select --</option>
@@ -84,11 +76,12 @@
                         <option value="MECH">MECH - Mechanical Engineering</option>
                         <option value="CIVIL">CIVIL - Civil Engineering</option>
                         <option value="IT">IT - Information Technology</option>
-                        <option value="CSM">CSM - Computer Science & Machine Learning</option>
+                        <option value="CSM">CSM - Computer Science &amp; Machine Learning</option>
+                        <option value="CSBS">CSBS - Computer Science and Business Systems</option>
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="semesterGroup">
                     <label>Semester <span class="required">*</span></label>
                     <select id="semester">
                         <option value="">-- Select --</option>
@@ -108,7 +101,181 @@
         </div>
     </div>
 
-    <!-- ==================== PAGE 3: RESULT DISPLAY ==================== -->
+    <!-- ==================== PAGE 2B: STUDENT PROFILE (for CSE/CSM) ==================== -->
+    <div id="page-profile" class="page">
+        <div class="gcap-header">
+            <div class="gcap-header-left">
+                <img src="https://www.griet.in/gcap/images/gcaplogo.jpg" alt="G-CAP Logo" class="gcap-logo">
+                <div class="gcap-title">
+                    <span class="gcap-name">G-CAP</span>
+                    <span class="gcap-subtitle">GRIET CAMPUS<br>ADMINISTRATION PORTAL</span>
+                </div>
+            </div>
+            <div class="gcap-header-right">
+                <span id="gcapUserName" class="gcap-user-name"></span>
+                <span class="gcap-header-sep">|</span>
+                <a href="#">Change Password</a>
+                <span class="gcap-header-sep">|</span>
+                <a href="#" onclick="doLogout()">Logout</a>
+            </div>
+        </div>
+
+        <!-- Beige/Maroon Tab Stand-in -->
+        <div style="width: 100%; height: 35px; background-color: #e9e5d9; border-bottom: 25px solid #5c2233;"></div>
+
+        <div class="main-content">
+            <div class="profile-container">
+                <!-- Student Info Card -->
+                <div class="profile-card">
+                    <div class="profile-details">
+                        <table class="profile-table">
+                            <tr>
+                                <td class="profile-label">Course</td>
+                                <td class="profile-sep">:</td>
+                                <td class="profile-value">B.Tech</td>
+                            </tr>
+                            <tr>
+                                <td class="profile-label">Branch</td>
+                                <td class="profile-sep">:</td>
+                                <td class="profile-value" id="profileBranch"></td>
+                            </tr>
+                            <tr>
+                                <td class="profile-label">Roll Number</td>
+                                <td class="profile-sep">:</td>
+                                <td class="profile-value" id="profileRollNo"></td>
+                            </tr>
+                            <tr>
+                                <td class="profile-label">Section</td>
+                                <td class="profile-sep">:</td>
+                                <td class="profile-value" id="profileSection"></td>
+                            </tr>
+                            <tr>
+                                <td class="profile-label">Academic Year</td>
+                                <td class="profile-sep">:</td>
+                                <td class="profile-value" id="profileAcademicYear">2025 to 2029</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="profile-photo" id="profilePhotoBox">
+                        <div class="photo-loader" id="photoLoader">
+                            <div class="loader-spinner"></div>
+                            <span>Loading...</span>
+                        </div>
+                        <img id="profilePhoto" class="profile-photo-img" style="display:none;" alt="Student Photo"
+                            onload="this.style.display='block'; document.getElementById('photoLoader').style.display='none';"
+                            onerror="this.style.display='none'; document.getElementById('photoLoader').style.display='flex';">
+                    </div>
+                </div>
+
+
+
+
+                <!-- Current Details Section -->
+                <div class="academic-section">
+                    <h3 class="academic-title"
+                        style="text-align: center; border: none; text-decoration: underline; font-size: 16px;">Current
+                        Details</h3>
+                    <table class="academic-table" style="text-align: center; border: 1px solid #ccc; font-size: 13px;">
+                        <thead style="background-color: #f9f9f9; border-bottom: 1px solid #ccc;">
+                            <tr>
+                                <th
+                                    style="padding: 8px; border-right: 1px solid #ccc; font-weight: normal; color: #555;">
+                                    Semester</th>
+                                <th
+                                    style="padding: 8px; border-right: 1px solid #ccc; font-weight: normal; color: #555;">
+                                    Status</th>
+                                <th
+                                    style="padding: 8px; border-right: 1px solid #ccc; font-weight: normal; color: #555;">
+                                    Credits</th>
+                                <th style="padding: 8px; font-weight: normal; color: #555;">Backlogs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 10px; border-right: 1px solid #ccc; color: #333;">I B.Tech I Sem
+                                </td>
+                                <td style="padding: 10px; border-right: 1px solid #ccc; color: #333;">PROMOTED</td>
+                                <td style="padding: 10px; border-right: 1px solid #ccc; color: #333;"
+                                    id="currentCredits">0</td>
+                                <td style="padding: 10px; color: #333;" id="currentBacklogs">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br><br>
+
+                    <h3 class="academic-title"
+                        style="text-align: center; border: none; text-decoration: underline; font-size: 16px; margin-bottom: 20px;">
+                        Academic Details</h3>
+
+                    <div style="font-size: 14px; color: #444; line-height: 2;">
+                        <span style="font-weight: bold; color: #5c2233;">CGPA= </span> <span id="currentCgpa">0</span>
+                        <br><br>
+
+                    </div>
+
+                    <div style="text-align: right; margin-top: 30px;">
+                        <a href="#" onclick="showAllResults(); return false;"
+                            style="color: #2a2f7e; text-decoration: none; font-weight: bold; font-size: 14px;">Results
+                            ⭢</a>
+                    </div>
+                </div>
+
+                <!-- Results Area (shown when Results is clicked) -->
+                <div id="profileResultsArea" class="profile-results-area" style="display:none;">
+                    <div class="profile-results-header">
+                        <h3>Examination Results</h3>
+                        <button class="close-results-btn" onclick="closeProfileResults()">✕ Close</button>
+                    </div>
+
+                    <!-- All semesters results table -->
+                    <table class="results-table semester-summary-table">
+                        <thead>
+                            <tr>
+                                <th>Semester</th>
+                                <th>SGPA</th>
+                                <th>Total Credits</th>
+                                <th>Result</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="semesterSummaryBody">
+                        </tbody>
+                    </table>
+
+                    <!-- Detailed subject results for a specific semester -->
+                    <div id="semesterDetailArea" style="display:none;">
+                        <div class="profile-results-header" style="margin-top:20px;">
+                            <h3 id="profileResultsTitle">Semester 1-1 - Subject Details</h3>
+                            <button class="close-results-btn" onclick="closeSemesterDetail()">✕ Close Details</button>
+                        </div>
+
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Subject Code</th>
+                                    <th>Subject Name</th>
+                                    <th>Credits</th>
+                                    <th>Grade</th>
+                                    <th>Grade Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="profileResultsBody">
+                            </tbody>
+                        </table>
+
+                        <div class="joke-banner">
+                            <h1>it is a joke</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 3: RESULT DISPLAY (for non-CSE/CSM) ==================== -->
     <div id="page-results" class="page">
         <div class="welcome-bar">
             <span>Welcome, <strong id="welcomeUser2"></strong></span>
@@ -154,8 +321,8 @@
                     </table>
 
                     <div class="joke-banner">
-                        <h1>it is a joke 😁😁</h1>
-                        <p>i will pray for you to pass the exam 🙌</p>
+                        <h1>it is a joke</h1>
+
                     </div>
                 </div>
 
