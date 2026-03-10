@@ -114,12 +114,15 @@ function getSection(rollNumber) {
 
 // ===== LOGIN =====
 function doLogin() {
-    const loginId = document.getElementById('loginId').value.trim().toUpperCase();
+    const rawLoginId = document.getElementById('loginId').value.trim();
     const loginPassword = document.getElementById('loginPassword').value.trim();
     const errorDiv = document.getElementById('loginError');
 
-    // Validate login ID: must start with 25241A followed by at least 4 alphanumeric chars (case-insensitive)
-    const idRegex = /^25241A[A-Z0-9]{4,}$/i;
+    // Convert to uppercase first so both small and capital letters are accepted
+    const loginId = rawLoginId.toUpperCase();
+
+    // Validate login ID: must start with 25241A followed by at least 4 alphanumeric chars
+    const idRegex = /^25241A[A-Z0-9]{4,}$/;
 
     if (!loginId || !idRegex.test(loginId) || !loginPassword) {
         errorDiv.textContent = 'Invalid Credentials';
